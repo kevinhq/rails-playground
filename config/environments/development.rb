@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.hosts << "3000-a54b169b-f2c0-439c-8d88-e7b5a9dba4cd.ws-us02.gitpod.io"
+  config.hosts << "3000-"+`gp url`
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
