@@ -1,5 +1,6 @@
 Rails.application.configure do
-  config.hosts << "3000-"+`gp url`
+  url = `gp url`
+  config.hosts << "3000-"+url[8,url.length].chomp
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
