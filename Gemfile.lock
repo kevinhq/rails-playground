@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/kevinhq/active_type
+  revision: 4fc130765ef196e2ba91137ba83d6714fa4e3808
+  specs:
+    active_type (1.4.2)
+      activerecord (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -198,6 +205,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_type!
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
