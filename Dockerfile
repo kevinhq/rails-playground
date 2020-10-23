@@ -65,18 +65,4 @@ RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import - \
     && echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*' >> /home/gitpod/.bashrc.d/70-ruby
 RUN echo "rvm_gems_path=/workspace/.rvm" > ~/.rvmrc
 
-### Prologue (built across all layers) ###
-LABEL dazzle/layer=dazzle-prologue
-LABEL dazzle/test=tests/prologue.yaml
-USER root
-RUN curl -o /usr/bin/dazzle-util -L https://github.com/csweichel/dazzle/releases/download/v0.0.3/dazzle-util_0.0.3_Linux_x86_64 \
-    && chmod +x /usr/bin/dazzle-util
-# merge dpkg status files
-RUN cp /var/lib/dpkg/status /tmp/dpkg-status \
-    && for i in $(ls /var/lib/apt/dazzle-marks/*.status); do /usr/bin/dazzle-util debian dpkg-status-merge /tmp/dpkg-status $i > /tmp/dpkg-status; done \
-    && cp -f /var/lib/dpkg/status /var/lib/dpkg/status-old \
-    && cp -f /tmp/dpkg-status /var/lib/dpkg/status
-# copy tests to enable the self-test of this image
-COPY tests /var/lib/dazzle/tests
-
 USER gitpod
